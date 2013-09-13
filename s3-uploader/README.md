@@ -62,6 +62,7 @@ s3 uploader
 ### Instructions to use our uploader
 1. We have to install the uploader app.
   $ ./install.sh
+
 2. Execute the uploader app
-  $ python uploader.py &l; IP &g;:&l; PORT &g;
+  $ python uploader.py <IP>:<PORT>
 
