@@ -13,7 +13,7 @@ $(function() {
     var BUCKET_NAME = 'barreche-tb';
     var BUCKET_RESOURCE_FOLDER = 'test/';
     var BUCKET_ACTION = 'https://' + BUCKET_NAME + '.s3.amazonaws.com';
-    var BUCKET_URL = "https://s3.amazonaws.com/" + BUCKET_NAME + '/';    
+    var BUCKET_URL = "https://s3.amazonaws.com/" + BUCKET_NAME + '/';
     var THUMBRIT = {
         'BASE_URL': 'http://api.thumbr.io/',
         'API_KEY': 'D-lvXHFIHpY',
@@ -71,7 +71,6 @@ $(function() {
         var thumbritUrl = thumbrit(url, THUMBRIT.WIDTH_THUMBNAIL, THUMBRIT.HEIGHT_THUMBNAIL,
                                    '', false, [], filename);
         element.find('.' + CLASS_DETAILS_FILE + ' img').attr('src', thumbritUrl);
-        console.log('URL: ' + thumbritUrl);
     }
 
     function thumbrit(url, width, height, crop, download, effects, seoname) {
