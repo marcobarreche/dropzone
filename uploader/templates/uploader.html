@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Example</title>
+	<link media="all" rel="stylesheet" type="text/css" href="./static/css/basic.css"></link>
+	<link media="all" rel="stylesheet" type="text/css" href="./static/css/dropzone.css"></link>
+
+	<!-- imported libraries -->
+	<script src="./static/js/jquery.1.9.1.min.js"></script>
+	<script src="./static/js/crypto.3.1.2.min.js"></script>
+	<script src="./static/js/base64.js"></script>
+	<script src="./static/js/hmac.js"></script>
+	<script src="./static/js/dropzone.js"></script>
+
+	<!-- my library -->
+	<script src="./static/js/s3.uploader.js"></script>
+
+</head>
+<body>
+	<h1>Example uploader</h1>
+	<form id="uploader" action="https://barreche-tb.s3.amazonaws.com" class="dropzone"
+		  method="POST" enctype="multipart/form-data">
+		<input name="file" type="file" multiple />
+	</form>
+
+</body>
+</html>
