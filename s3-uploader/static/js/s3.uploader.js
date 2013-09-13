@@ -1,14 +1,8 @@
-/*
-    user            ACCESS key              SECRET KEY
-    marcobarreche   AKIAIC72F3VVTJSB27GA    CmGntNl/x2kV/qisZJU4OnAb6qBCASNl2kn6Q/5h
-    user_upload     AKIAJLHD6SHE45DVDL4Q    m8ZUN2MFW78hgpWY3LttwUzuvO7/VhaKCfIHmAtk
-*/
-
 
 $(function() {
     // Constants
-    var _AWS_ACCESS_KEY = 'AKIAJLHD6SHE45DVDL4Q';
-    var _AWS_SECRET_KEY = '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';
+    var _AWS_ACCESS_KEY = 'acess_key';
+    var _AWS_SECRET_KEY = 'secret_key';
 
     var BUCKET_NAME = 'barreche-tb';
     var BUCKET_RESOURCE_FOLDER = 'test/';
@@ -16,8 +10,8 @@ $(function() {
     var BUCKET_URL = "https://s3.amazonaws.com/" + BUCKET_NAME + '/';
     var THUMBRIT = {
         'BASE_URL': 'http://api.thumbr.io/',
-        'API_KEY': 'D-lvXHFIHpY',
-        'SECRET_KEY': '7yZYotUT8b3qnu9Rc.CE',
+        'API_KEY': 'api_key',
+        'SECRET_KEY': 'secret_key',
         'WIDTH_THUMBNAIL': 100,
         'HEIGHT_THUMBNAIL': 100,
     };
