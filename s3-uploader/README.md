@@ -43,7 +43,7 @@ s3 uploader
       ],
       "Sid": "Stmt1379078059000",
       "Resource": [
-        "arn:aws:s3:::$&l;bucket-name&gt;/&l;folder-path&g;/*"
+        "arn:aws:s3:::bucket-name/folder-path/*"
       ],
       "Effect": "Allow"
     }
@@ -53,7 +53,7 @@ s3 uploader
 </pre>
 
 (*) Note: The users in this group can do all the actions listed in "ACTION" on the Resource:
-  arn:aws:s3:::$&l;bucket-name&gt;/&l;folder-path&g;/*
+  arn:aws:s3:::bucket-name/folder-path/*
 
 5. Now, we create a user, name it and associate it to the previous group.
 
