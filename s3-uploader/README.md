@@ -20,11 +20,11 @@ s3 uploader
 	</code>
 </pre>
 
-3. Now we have to select or create a folder where all resources will be uploaded by our users.
-   Once we have choosen the folder, click on "ACTIONS" and then in "MAKE PUBLIC".
+3. Now we have to select (or create) a folder in our bucket where all resources will be uploaded by our users.
+   Once we have choosen the folder, we click on "ACTIONS" and then in "MAKE PUBLIC".
    Now, everybody is able to access to the contents of the folder.
 
-4. Now we need to create a user with several grants to access to our bucket, upload a image, eliminate it,
+4. Now we need to create a user with several grants to access to our bucket, upload an resource,
    list all the contents of a folder, etc. To do this we must go click on "SECURITY CREDENTIALS", and later in "GROUPS". We click on "CREATE NEW GROUP". We give it a name and link it the next policy:
 
 <pre>
@@ -52,14 +52,14 @@ s3 uploader
 	</code>
 </pre>
 
-(*) Note: The users in this group can do all the actions listed in "ACTION" on the Resource:
-  arn:aws:s3:::bucket-name/folder-path/*
+(*) Note: The users in this group can do all the actions listed in "ACTION" on the folder "folder-path".
 
-5. Now, we create a user, name it and associate it to the previous group.
+5. Now, we can create a user, and associate it to the previous group.
 
 
 
 ### Instructions to use our uploader
+
 1. We have to install the uploader app.
   $ ./install.sh
 
