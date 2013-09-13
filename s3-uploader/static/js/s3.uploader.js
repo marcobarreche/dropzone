@@ -48,7 +48,7 @@ $(function() {
         var POLICY_JSON = {
             "expiration": "2015-01-01T00:00:00Z",
             "conditions": [
-                {"bucket": "barreche-tb"},
+                {"bucket": BUCKET_NAME},
                 ["starts-with", "$key", BUCKET_RESOURCE_FOLDER],
                 {"acl": "public-read"},
                 ["starts-with", "$Content-Type", ""],
