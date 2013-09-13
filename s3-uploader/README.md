@@ -64,5 +64,5 @@ s3 uploader
   $ ./install.sh
 
 2. Execute the uploader app
-  $ python uploader.py <IP>:<PORT>
+  $ python uploader.py IP:PORT
 
