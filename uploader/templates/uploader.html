@@ -14,15 +14,15 @@
 	<script src="./static/js/dropzone.js"></script>
 
 	<!-- my library -->
-	<script src="./static/js/s3.uploader.js"></script>
+	<script src="http://local.api.thumbr.io/js/s3.uploader.js?api_key=ePqGYfaVzIM"></script>
 
 </head>
 <body>
 	<h1>Example uploader</h1>
 	<form id="uploader" action="https://barreche-tb.s3.amazonaws.com" class="dropzone"
 		  method="POST" enctype="multipart/form-data">
-		<input name="file" type="file" multiple />
+		<input id="file" name="file" type="file" multiple />
+		<input id="submit" type="submit" name="submit" />
 	</form>
-
 </body>
 </html>
