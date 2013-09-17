@@ -3,26 +3,47 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Example</title>
-	<link media="all" rel="stylesheet" type="text/css" href="./static/css/basic.css"></link>
 	<link media="all" rel="stylesheet" type="text/css" href="./static/css/dropzone.css"></link>
+	<style type="text/css">
+		.person-data.row {
+			margin-bottom: 5px;
+		}
+		.person-data.row input {
+			width: 40px;
+		}
+	</style>
 
-	<!-- imported libraries -->
-	<script src="./static/js/jquery.1.9.1.min.js"></script>
-	<script src="./static/js/crypto.3.1.2.min.js"></script>
-	<script src="./static/js/base64.js"></script>
-	<script src="./static/js/hmac.js"></script>
-	<script src="./static/js/dropzone.js"></script>
 
-	<!-- my library -->
-	<script src="http://local.api.thumbr.io/js/s3.uploader.js?api_key=ePqGYfaVzIM"></script>
-
+	<script type="text/javascript" src="./static/js/jquery.1.9.1.min.js"></script>
+	<script type="text/javascript" src="./static/js/crypto.3.1.2.min.js"></script>
+	<script type="text/javascript" src="./static/js/base64.js"></script>
+	<script type="text/javascript" src="./static/js/hmac.js"></script>
+	<script type="text/javascript" src="./static/js/dropzone.js"></script>
+	<script type="text/javascript" src="http://local.api.thumbr.io/js/s3.uploader.js?api_key=ePqGYfaVzIM"></script>
 </head>
 <body>
 	<h1>Example uploader</h1>
-	<form id="uploader" action="https://barreche-tb.s3.amazonaws.com" class="dropzone"
-		  method="POST" enctype="multipart/form-data">
-		<input id="file" name="file" type="file" multiple />
-		<input id="submit" type="submit" name="submit" />
+	<form id="person-data" action="http://google.com" method="POST">
+		<div class="row">
+			<label>Name:</label><input type="input" id="name" name="name" />
+		</div>
+		<div class="row">
+			<label>Surname:</label><input type="input" id="surname" name="surname" />
+		</div>
+		<div class="row">
+			<label>City:</label><input type="input" id="city" name="city" />
+		</div>
+		<div class="row">
+			<label>Upload your Image: </label>
+		</div>
+		<div class="row">
+			<div id="uploader" action="https://barreche-tb.s3.amazonaws.com" class="dropzone"
+		  	method="POST" enctype="multipart/form-data">
+			</div>
+		</div>
+		<div class="row">
+			<input type="submit" id="submit" name="submit" value="submit" />
+		</div>
 	</form>
 </body>
 </html>
