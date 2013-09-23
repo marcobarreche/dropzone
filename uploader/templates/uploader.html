@@ -18,8 +18,18 @@
 	<script type="text/javascript" src="./static/js/crypto.3.1.2.min.js"></script>
 	<script type="text/javascript" src="./static/js/base64.js"></script>
 	<script type="text/javascript" src="./static/js/hmac.js"></script>
-	<script type="text/javascript" src="./static/js/dropzone.js"></script>
-	<script type="text/javascript" src="http://local.api.thumbr.io/js/s3.uploader.js?api_key=ePqGYfaVzIM"></script>
+	<script type="text/javascript" src="./static/js/dropzone.js"></script><!-- api_key=ePqGYfaVzIM -->
+	<script type="text/javascript" src="http://local.api.thumbr.io/js/s3.uploader.js?V=123"></script>
+	<script type="text/javascript">
+		var uploader;
+		$('.body').ready(function() {
+		    // Generate UploaderThumbrio Object
+		    uploader = new UploaderThumbrio({
+		        url: 'https://{{ bucket_name }}.s3.amazonaws.com',
+		    });
+		    uploader.refreshServiceOptionss();
+		});
+	</script>
 </head>
 <body>
 	<h1>Example uploader</h1>
@@ -39,6 +49,10 @@
 		<div class="row">
 			<div id="uploader" action="https://barreche-tb.s3.amazonaws.com" class="dropzone"
 		  	method="POST" enctype="multipart/form-data">
+		  		<div class="fallback">
+    				<input name="file" type="file" multiple />
+    				<input name="submit" type="submit" />
+  				</div>
 			</div>
 		</div>
 		<div class="row">
