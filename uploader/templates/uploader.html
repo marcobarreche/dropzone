@@ -11,6 +11,11 @@
 		.person-data.row input {
 			width: 40px;
 		}
+		.marco-dropzone {
+			width: 1000px;
+			height: 600px;
+			background-color: gray;
+		}
 	</style>
 
 
@@ -18,16 +23,29 @@
 	<script type="text/javascript" src="./static/js/crypto.3.1.2.min.js"></script>
 	<script type="text/javascript" src="./static/js/base64.js"></script>
 	<script type="text/javascript" src="./static/js/hmac.js"></script>
-	<script type="text/javascript" src="./static/js/dropzone.js"></script><!-- api_key=ePqGYfaVzIM -->
-	<script type="text/javascript" src="http://local.api.thumbr.io/js/s3.uploader.js?V=123"></script>
+	<script type="text/javascript" src="./static/js/dropzone.js"></script>
+	<script type="text/javascript" src="http://local.api.thumbr.io/js/s3.uploader.js?V=UNO3"></script>
 	<script type="text/javascript">
 		var uploader;
 		$('.body').ready(function() {
 		    // Generate UploaderThumbrio Object
 		    uploader = new UploaderThumbrio({
-		        url: 'https://{{ bucket_name }}.s3.amazonaws.com',
+		        dropzoneClass: '.dropzone'
 		    });
-		    uploader.refreshServiceOptionss();
+		    uploader.storeRemote(null, {
+		    	'awsAccessKey': 'AKIAINNFXTZ6KZA772DA',
+		    	'path': '/uploads/marco/',
+		    	'bucketName': 'barreche-tb'
+		    });
+		    var awsSecretKey = 'RQipwUS/EtlXPplrYhRrZskoeaWyLW8PFAXDVEbW';
+		    var data = uploader.generatePolicyAndSignature(24, awsSecretKey);
+		    uploader.storeRemote(null, {'policy': data[0], 'signature': data[1]});
+
+		    // Delete neg0007.jpg;
+		    var filename = 'neg-0007.jpg';
+		    var date = new Date();
+		    var authorization = uploader.generateAuthorization(filename, awsSecretKey, date);
+		    uploader.deleteFile(filename, authorization, date); 
 		});
 	</script>
 </head>
