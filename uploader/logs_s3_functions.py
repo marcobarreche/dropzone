@@ -166,7 +166,6 @@ def parser():
         logging.exception('Error parsing S3 logs: %s', str(e))
         logging.exception('Commmand: %s', absolute_file_path(LOG_FILE_LOCAL_DIR, fname))
     logging.debug('Amazon S3 log parser ends.')
-    return s3_billing  # XXX: REMOVE THIS LINE
 
 
 def filter_valid_operations(list_operations, s3_billing):
