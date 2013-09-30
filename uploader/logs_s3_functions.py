@@ -58,6 +58,7 @@ import sys
 
 
 SERVICE_S3 = {
+    # s3 username: logs-reader
     'access_key': 'AKIAIM7RS3YPLGU2I6YQ',
     'secret_key': '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',
     'bucket_name': 'barreche-tb',
@@ -321,6 +322,6 @@ if __name__ == '__main__':
             elif function == 'parser':
                 parser()
     except IndexError:
-        print 'python logs_downloader.py --op download name_folder [date]'
-        print 'python logs_downloader.py --op delete [date]'
-        print 'python logs_downloader.py --op parser'
+        print 'python logs_s3_functions.py --op download name_folder [date]'
+        print 'python logs_s3_functions.py --op delete [date]'
+        print 'python logs_s3_functions.py --op parser'
