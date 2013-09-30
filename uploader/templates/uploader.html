@@ -33,19 +33,19 @@
 		        dropzoneClass: '.dropzone'
 		    });
 		    uploader.storeRemote(null, {
-		    	'awsAccessKey': 'AKIAINNFXTZ6KZA772DA',
-		    	'path': '/uploads/marco/',
+		    	'awsAccessKey': 'AKIAIIOMUVV4LOJ3CRQQ',
+		    	'path': '/uploads/user1/',
 		    	'bucketName': 'barreche-tb'
 		    });
-		    var awsSecretKey = 'RQipwUS/EtlXPplrYhRrZskoeaWyLW8PFAXDVEbW';
+		    var awsSecretKey = '1cYKqxJp0S+JOe06OZMHHr8M4aiSH2xypiVpsAVx';
 		    var data = uploader.generatePolicyAndSignature(24, awsSecretKey);
 		    uploader.storeRemote(null, {'policy': data[0], 'signature': data[1]});
 
 		    // Delete neg0007.jpg;
-		    var filename = 'neg-0007.jpg';
+		    var filename = 'neg-0013.jpg';
 		    var date = new Date();
 		    var authorization = uploader.generateAuthorization(filename, awsSecretKey, date);
-		    uploader.deleteFile(filename, authorization, date); 
+		    uploader.deleteFile(filename, authorization, date);
 		});
 	</script>
 </head>
