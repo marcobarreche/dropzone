@@ -1,81 +1,109 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>Example</title>
-	<link media="all" rel="stylesheet" type="text/css" href="./static/css/dropzone.css"></link>
-	<style type="text/css">
-		.person-data.row {
-			margin-bottom: 5px;
-		}
-		.person-data.row input {
-			width: 40px;
-		}
-		.marco-dropzone {
-			width: 1000px;
-			height: 600px;
-			background-color: gray;
-		}
-	</style>
+    <meta charset="utf-8" />
+    <title>Example</title>
+    <link media="all" rel="stylesheet" type="text/css" href="./static/css/dropzone.css"></link>
+    <style type="text/css">
+        .person-data.row {
+            margin-bottom: 5px;
+        }
+        .person-data.row input {
+            width: 40px;
+        }
+        .marco-dropzone {
+            width: 1000px;
+            height: 600px;
+            background-color: gray;
+        }
+    </style>
 
 
-	<script type="text/javascript" src="./static/js/jquery.1.9.1.min.js"></script>
-	<script type="text/javascript" src="./static/js/crypto.3.1.2.min.js"></script>
-	<script type="text/javascript" src="./static/js/base64.js"></script>
-	<script type="text/javascript" src="./static/js/hmac.js"></script>
-	<script type="text/javascript" src="./static/js/dropzone.js"></script>
-	<script type="text/javascript" src="http://local.api.thumbr.io/js/s3.uploader.js?V=UNO3"></script>
-	<script type="text/javascript">
-		var uploader;
-		$('.body').ready(function() {
-		    // Generate UploaderThumbrio Object
-		    uploader = new UploaderThumbrio({
-		        dropzoneClass: '.dropzone'
-		    });
-		    uploader.storeRemote(null, {
-		    	'awsAccessKey': 'AKIAIIOMUVV4LOJ3CRQQ',
-		    	'path': '/uploads/user1/',
-		    	'bucketName': 'barreche-tb'
-		    });
-		    var awsSecretKey = '1cYKqxJp0S+JOe06OZMHHr8M4aiSH2xypiVpsAVx';
-		    var data = uploader.generatePolicyAndSignature(24, awsSecretKey);
-		    uploader.storeRemote(null, {'policy': data[0], 'signature': data[1]});
+    <script type="text/javascript" src="./static/js/jquery.1.9.1.min.js"></script>
+    <script type="text/javascript" src="./static/js/crypto.3.1.2.min.js"></script>
+    <script type="text/javascript" src="./static/js/base64.js"></script>
+    <script type="text/javascript" src="./static/js/hmac.js"></script>
+    <script type="text/javascript" src="./static/js/dropzone.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.1/dropbox.min.js"></script>
+    <script type="text/javascript" src="http://local.api.thumbr.io/js/thumbrio.uploader.js"></script>
+    <script type="text/javascript">
+        var uploader;
+        $('.body').ready(function() {
+            test_upload_to_dropbox();
+            console.log(JSON.stringify(uploader.serviceOptions));
+            console.log(JSON.stringify(uploader.fileOptions));
+        });
+        function test_upload_to_s3() {
+            uploader = new UploaderThumbrio({
+                dropzoneClass: '.dropzone'
+            });
+            uploader.storeRemote({}, {service: 's3'});
+            uploader.setApiKey('ePqGYfaVzIM');
+            var data = uploader.generatePolicyAndSignature('HIDTaxwHzdF/Ys7/vHmjUnVKvCsm8XBLLTW3Ndx6');
+            uploader.storeRemote({public: 'public-read'}, {signature: data[1], policy: data[0]});
+        }
+        function test_delete_to_s3() {
+            uploader = new UploaderThumbrio({
+                dropzoneClass: '.dropzone'
+            });
+            uploader.storeRemote({}, {service: 's3'});
+            uploader.setApiKey('ePqGYfaVzIM');
+            
+            var today = new Date();
+            var filename = 'UMD_101.jpg'
+            var authorization = uploader.generateAuthorization(filename, 'HIDTaxwHzdF/Ys7/vHmjUnVKvCsm8XBLLTW3Ndx6', today);
+            uploader.deleteFile(filename, authorization, today);
+        }
+        function test_upload_to_dropbox() {
+            uploader = new UploaderThumbrio({
+                dropzoneClass: '.dropzone'
+            });
+            uploader.storeRemote({contentType: 'image/png'}, {service: 'dropbox'});
+            uploader.setApiKey('ePqGYfaVzIM');
+            var data = uploader.generatePolicyAndSignature('anvuicuqobh892m');
+            uploader.storeRemote({public: 'public-read'}, {signature: data[1], policy: data[0]});
+        }
+        function test_delete_to_dropbox() {
+            uploader = new UploaderThumbrio({
+                dropzoneClass: '.dropzone'
+            });
+            uploader.storeRemote({}, {service: 'dropbox'});
+            uploader.setApiKey('ePqGYfaVzIM');
 
-		    // Delete neg0007.jpg;
-		    var filename = 'neg-0013.jpg';
-		    var date = new Date();
-		    var authorization = uploader.generateAuthorization(filename, awsSecretKey, date);
-		    uploader.deleteFile(filename, authorization, date);
-		});
-	</script>
+            var today = new Date();
+            var authorization = uploader.generateAuthorization('UMD_104.jpg', 'anvuicuqobh892m', today);
+            uploader.deleteFile('UMD_104.jpg', authorization, today);
+        }
+    </script>
 </head>
+
 <body>
-	<h1>Example uploader</h1>
-	<form id="person-data" action="http://google.com" method="POST">
-		<div class="row">
-			<label>Name:</label><input type="input" id="name" name="name" />
-		</div>
-		<div class="row">
-			<label>Surname:</label><input type="input" id="surname" name="surname" />
-		</div>
-		<div class="row">
-			<label>City:</label><input type="input" id="city" name="city" />
-		</div>
-		<div class="row">
-			<label>Upload your Image: </label>
-		</div>
-		<div class="row">
-			<div id="uploader" action="https://barreche-tb.s3.amazonaws.com" class="dropzone"
-		  	method="POST" enctype="multipart/form-data">
-		  		<div class="fallback">
-    				<input name="file" type="file" multiple />
-    				<input name="submit" type="submit" />
-  				</div>
-			</div>
-		</div>
-		<div class="row">
-			<input type="submit" id="submit" name="submit" value="submit" />
-		</div>
-	</form>
+    <h1>Example uploader</h1>
+    <form id="person-data" action="http://google.com" method="POST">
+        <div class="row">
+            <label>Name:</label><input type="input" id="name" name="name" />
+        </div>
+        <div class="row">
+            <label>Surname:</label><input type="input" id="surname" name="surname" />
+        </div>
+        <div class="row">
+            <label>City:</label><input type="input" id="city" name="city" />
+        </div>
+        <div class="row">
+            <label>Upload your Image: </label>
+        </div>
+        <div class="row">
+            <div id="uploader" action="http://local.thumbr.io/upload_to_dropbox" class="dropzone"
+            method="POST" enctype="multipart/form-data">
+                <div class="fallback">
+                    <input id="file" name="file" type="file" multiple />
+                    <input name="submit" type="submit" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit" id="submit" name="submit" value="submit" />
+        </div>
+    </form>
 </body>
 </html>
