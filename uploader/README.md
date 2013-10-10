@@ -60,8 +60,10 @@ Dropbox uploader
 
 
 
-### The JAVASCRIPT API
-1. Constructor:
+The JAVASCRIPT API
+=====================
+
+### 1. Constructor:
 UploaderThumbrio :: UploaderThumbrio(options)
 options is a dictionary with these options:
     1. url: (str) Optional. It is the URL of our uploader.
@@ -73,7 +75,7 @@ options is a dictionary with these options:
     4. maxFiles: (int) Optional. It is the maximum number of files you can upload. Default value: null.
     5. addRemoveLinks: (bool) Optional. True if you want a button in the thumbnail to remove it. Default
                                         value: true.
-2. Methods:
+### 2. Methods:
 void  setApiKey(apiKey):
     Set the api key of the user and upload the values of the variable 'serviceOptions'.
     Arguments:
@@ -123,61 +125,64 @@ void deleteFile(filename, authorization, date)
         date (Date): This is the date you use to create the string 'authorization'.
 
 
-4. API URI
-    =================================================================
-    1. http://thumbr.io/get/service_settings
-    
-    METHOD:
-        GET
-    Data:
-        api_key: api of thumbrit
-        service: s3 or dropbox
-    Returns:
-        A list: [public_key, resource_path, bucket_name]
-    =================================================================
+URLS API
+=====================
+### 1. http://thumbr.io/get/service_settings
+Get the public key, the resource path and the bucket name of a user.
 
-    2. http://thumbr.io/get/thumbrio_thumbnail_url
+METHOD:
+    GET
 
-    METHOD:
-        GET
+Data:
+    api_key: api of thumbrit
+    service: s3 or dropbox
 
-    Data:
-        api_key: api of thumbrit
-        filename: the name of the file
-        width: the width of the thumbnail
-        height: the height of the thumbnail
-        service: s3 or dropbox
+Returns:
+    A list: [public_key, resource_path, bucket_name]
 
-    Returns:
-        The url of the thumbnail
-    =================================================================
-    
-    3. http://thumbr.io/upload/dropbox/file
-    Upload a file to dropbox
+=================================================================
+### 2. http://thumbr.io/get/thumbrio_thumbnail_url
+Get the url of the thumbnail of a file which is uploaded in s3 or dropbox.
 
-    METHOD:
-        POST
+METHOD:
+    GET
 
-    Data:
-        api_key: api key of thumbrit.
-        key: absolute path of the file.
-        file: The file.
-        file_options: json of file_options
-        service_options: json of service_options
-    =================================================================
+Data:
+    api_key: api of thumbrit.
+    filename: the absolute path to the filename.
+    width: the width of the thumbnail.
+    height: the height of the thumbnail.
+    service: s3 or dropbox.
 
-    4. http://thumbr.io/delete/dropbox/file
-    Delete a file to dropbox
+Returns:
+    The url of the thumbnail
 
-    METHOD:
-        POST
+=================================================================    
+### 3. http://thumbr.io/upload/dropbox/file
+Upload a file to dropbox
 
-    Data:
-        api_key: api key of thumbrit.
-        remote_filename: absolute path of the file.
-        expiration_date: expiration date.
-        authorization: authorization.
-    =================================================================
+METHOD:
+    POST
+
+Data:
+    api_key: api key of thumbrit.
+    key: absolute path of the file.
+    file: The file.
+    file_options: json of file_options
+    service_options: json of service_options
+
+=================================================================
+### 4. http://thumbr.io/delete/dropbox/file
+Delete a file to dropbox
+
+METHOD:
+    POST
+
+Data:
+    api_key: api key of thumbrit.
+    remote_filename: absolute path of the file.
+    expiration_date: expiration date.
+    authorization: authorization.
 
 
 ### Instructions to use our uploader
