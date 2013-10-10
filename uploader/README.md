@@ -10,11 +10,11 @@ s3 uploader
  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
  &lt;CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"&gt;
      &lt;CORSRule&gt;
-         &lt;AllowedOrigin&bt*&lt;/AllowedOrigin&gt;
-         &lt;AllowedMethod&btGET&lt;/AllowedMethod&gt;
-         &lt;AllowedMethod&btPOST&lt;/AllowedMethod&gt;
-         &lt;MaxAgeSeconds&bt3000&lt;/MaxAgeSeconds&gt;
-         &lt;AllowedHeader&bt*&lt;/AllowedHeader&gt;
+         &lt;AllowedOrigin&gt;*&lt;/AllowedOrigin&gt;
+         &lt;AllowedMethod&gt;GET&lt;/AllowedMethod&gt;
+         &lt;AllowedMethod&gt;POST&lt;/AllowedMethod&gt;
+         &lt;MaxAgeSeconds&gt;3000&lt;/MaxAgeSeconds&gt;
+         &lt;AllowedHeader&gt;*&lt;/AllowedHeader&gt;
      &lt;/CORSRule&gt;
  &lt;/CORSConfiguration&gt;
 	</code>
@@ -65,16 +65,18 @@ The JAVASCRIPT API
 
 ### 1. Constructor:
 UploaderThumbrio :: UploaderThumbrio(options)
-options is a dictionary with these options:
-    1. url: (str) Optional. It is the URL of our uploader.
-                            Default value: https://{{ bucket_name }}.s3.amazonaws.com
-    2. dropzoneClass: (str) Optional. It is the class of the uploader. Default value: '.dropzone'
-    2. maxFileSize: (int) Optional. It is the maximum size of a file expressed in MB. Default value: 10
-    3. acceptedFiles: (str) Optional. The accepted files to upload. Example: images/* if you only want
-                                      to upload images. Default value: null.
-    4. maxFiles: (int) Optional. It is the maximum number of files you can upload. Default value: null.
-    5. addRemoveLinks: (bool) Optional. True if you want a button in the thumbnail to remove it. Default
-                                        value: true.
+    options is a dictionary with these options:
+        1. url: (str) Optional. It is the URL of our uploader.
+                                Default value: https://{{ bucket_name }}.s3.amazonaws.com
+        2. dropzoneClass: (str) Optional. It is the class of the uploader. Default value: '.dropzone'
+        3. maxFileSize: (int) Optional. It is the maximum size of a file expressed in MB. Default value: 10
+        4. acceptedFiles: (str) Optional. The accepted files to upload. Example: images/* if you only want
+                                          to upload images. Default value: null.
+        5. maxFiles: (int) Optional. It is the maximum number of files you can upload. Default value: null.
+        6. addRemoveLinks: (bool) Optional. True if you want a button in the thumbnail to remove it. Default
+                                            value: true.
+
+
 ### 2. Methods:
 void  setApiKey(apiKey):
     Set the api key of the user and upload the values of the variable 'serviceOptions'.
@@ -84,7 +86,8 @@ void  setApiKey(apiKey):
 
 void storeRemote(fileOptions, serviceOptions):
     Set the fileOptions and serviceOptions variable and upload the value of 'policy' and 'signature'.
-    Arguments:
+    
+    Arguments:    
         fileOptions (Dict<str, T>) The restrictions of the file. The keys are these:
             1. public (str): Optional. We specify if the file will be public or private  (default: public-read).
                              The possible values are listed in
@@ -96,7 +99,6 @@ void storeRemote(fileOptions, serviceOptions):
                                                        uploading a file (default null).
             6. onErrorUpload (function()): Optional. The function will be called when we get an error
                                                      uploading a file (default null).
-        
         serviceOptions (Dict<str, str>) The settings of the repository s3. The keys are these:
             1. signature (str): The signature to upload a file
             2. policy (str): The policy to upload a file.
@@ -134,8 +136,8 @@ METHOD:
     GET
 
 Data:
-    api_key: api of thumbrit
-    service: s3 or dropbox
+    api_key: api of thumbrit.
+    service: s3 or dropbox.
 
 Returns:
     A list: [public_key, resource_path, bucket_name]
