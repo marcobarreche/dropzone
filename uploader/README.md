@@ -31,20 +31,37 @@ s3 uploader
 
 <pre>
 	<code>
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:*"
-      ],
-      "Sid": "Stmt1379078059000",
-      "Resource": [
-        "arn:aws:s3:::bucket-name/*"
-      ],
-      "Effect": "Allow"
-    }
-  ]
+{ 
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": ["s3:GetBucketLocation", "s3:ListAllMyBuckets"],
+          "Resource": "arn:aws:s3:::*"
+        },
+        {
+          "Effect": "Allow",
+          "Action": ["s3:ListBucket" ],
+          "Resource": [ "arn:aws:s3:::&gt;bucket-name&lt;"]
+        },
+        {
+          "Effect": "Allow",
+          "Action": [ "s3:PutObject", "s3:GetObject", "s3:DeleteObject"],
+          "Resource": [ "arn:aws:s3:::&gt;bucket-name&lt;/logs/*"]
+        }
+        {
+          "Effect": "Allow"
+          "Action": [
+              "iam:CreateAccessKey",
+              "iam:CreateUser",
+              "iam:DeleteAccessKey",
+              "iam:DeleteUser",
+              "iam:DeleteUserPolicy",
+              "iam:PutUserPolicy"
+          ],
+          "Resource": ["arn:aws:iam::&lt;id&gt;:user/*"],
+        }
+    ]
 }
 	</code>
 </pre>
