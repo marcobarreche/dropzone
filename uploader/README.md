@@ -46,25 +46,56 @@ s3 uploader
         },
         {
           "Effect": "Allow",
-          "Action": [ "s3:PutObject", "s3:GetObject", "s3:DeleteObject"],
+          "Action": [ "s3:GetObject", "s3:DeleteObject"],
           "Resource": [ "arn:aws:s3:::&gt;bucket-name&lt;/logs/*"]
         }
         {
           "Effect": "Allow"
           "Action": [
+              "iam:AddUserToGroup",
               "iam:CreateAccessKey",
               "iam:CreateUser",
               "iam:DeleteAccessKey",
               "iam:DeleteUser",
-              "iam:DeleteUserPolicy",
-              "iam:PutUserPolicy"
+              "iam:RemoveUserFromGroup"
           ],
           "Resource": ["arn:aws:iam::&lt;id&gt;:user/*"],
         }
     ]
 }
+
+
+
 	</code>
 </pre>
+
+5. 
+Now, we are going to create a group. All the users thumbrit creates must fulfill the restrictions
+of the group.
+- To create a group go to https://console.aws.amazon.com/iam/home?#groups
+- Press button create new group. Call it "upload-delete-files"
+- Add this policy to the group:
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:DeleteObject",
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:PutObjectAcl"
+      ],
+      "Sid": "Stmt1381492700000",
+      "Resource": [
+        "arn:aws:s3:::&gt;bucket-name&lt;/uploads/${aws:username}/*"
+      ],
+      "Effect": "Allow"
+    }
+  ]
+}
+
+
+
 
 
 Dropbox uploader
